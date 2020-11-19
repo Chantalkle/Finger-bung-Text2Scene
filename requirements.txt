@@ -1,0 +1,9 @@
+Folgende Bibliotheken werden für das Programm benötigt: 
+spacy
+zipfile
+os 
+xml.etree.ElementTree
+matplotlib.pyplot
+networkx
+
+außerdem muss der zip-Ordner "training.zip" im gleichen Ordner wie das Programm liegen
