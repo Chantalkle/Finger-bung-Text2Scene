@@ -2,15 +2,15 @@
 """
 
 @author: Chantal Klemm
+
+Python3.8
+Fingerübung Text2Scene Praktikum
 """
 import spacy
-#import numpy
 import zipfile
 import os 
 import xml.etree.ElementTree as ET
 import matplotlib.pyplot as plt
-
-import pandas as pd
 import networkx as nx
 
 #ordner öffnen und auf daten zugreifen
@@ -347,14 +347,35 @@ for child in bicyclesroot:
                     
                 
                     
-                
-                pass #Kanten erstellen
-                #landmark #trajector
+               
             elif grandchild.tag == 'OLINK':
-                pass #Kanten erstellen 
-                #landmark #trajector
+                ver1 = grandchild.get('fromID')
+                ver2 = grandchild.get('toID')
+                k1 = False
+                k2 = False
+                if ver1 in seid:
+                    k1 = setext[seid.index(ver1)]
+                elif ver1 in pid:
+                    k1 = ptext[pid.index(ver1)]
+                   
+                if ver2 in seid:
+                    k2 = setext[seid.index(ver2)]
+                    isin2 = True
+                elif ver1 in pid:
+                    if ver2 in pid:
+                        k2 = ptext[pid.index(ver2)]
+                        isin1 = True
+                
+                if k1 == False:
+                    pass
+                elif k2 == False: 
+                    pass
+                else:
+                   
+                    b.add_edge(k1,k2)
+                    c.add_edge(k1,k2)
             
-            pass
+
 
 plt.show()
 nx.draw(b, with_labels=True, node_color='green')
@@ -378,27 +399,53 @@ for child in pradoroot:
                     ver2 = grandchild.get('toID')
                     k1 = False
                     k2 = False
-                if ver1 in seid:
-                    k1 = setext[seid.index(ver1)]
-                elif ver1 in pid:
-                    k1 = ptext[pid.index(ver1)]
-                   
-                if ver2 in seid:
-                    k2 = setext[seid.index(ver2)]
-                    isin2 = True
-                elif ver1 in pid:
-                    if ver2 in pid:
-                        k2 = ptext[pid.index(ver2)]
-                        isin1 = True
-                
-                if k1 == False:
-                    pass
-                elif k2 == False: 
-                    pass
-                else:
-                   
-                    b.add_edge(k1,k2)
-                    c.add_edge(k1,k2)
+                    if ver1 in seid:
+                        k1 = setext[seid.index(ver1)]
+                    elif ver1 in pid:
+                        k1 = ptext[pid.index(ver1)]
+                       
+                    if ver2 in seid:
+                        k2 = setext[seid.index(ver2)]
+                        isin2 = True
+                    elif ver1 in pid:
+                        if ver2 in pid:
+                            k2 = ptext[pid.index(ver2)]
+                            isin1 = True
+                    
+                    if k1 == False:
+                        pass
+                    elif k2 == False: 
+                        pass
+                    else:
+                       
+                        b.add_edge(k1,k2)
+                        c.add_edge(k1,k2)
+                elif grandchild.tag == 'OLINK':
+                    ver1 = grandchild.get('fromID')
+                    ver2 = grandchild.get('toID')
+                    k1 = False
+                    k2 = False
+                    if ver1 in seid:
+                        k1 = setext[seid.index(ver1)]
+                    elif ver1 in pid:
+                        k1 = ptext[pid.index(ver1)]
+                       
+                    if ver2 in seid:
+                        k2 = setext[seid.index(ver2)]
+                        isin2 = True
+                    elif ver1 in pid:
+                        if ver2 in pid:
+                            k2 = ptext[pid.index(ver2)]
+                            isin1 = True
+                    
+                    if k1 == False:
+                        pass
+                    elif k2 == False: 
+                        pass
+                    else:
+                       
+                        b.add_edge(k1,k2)
+                        c.add_edge(k1,k2)
                    
 
 plt.show()
